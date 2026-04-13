@@ -44,11 +44,11 @@ class SettingParse:
         )
 
         # Kafka settings
-        self.kafka_ip = self.ini_class.get_setting("Kafka", "kafka.ip")
+        self.kafka_ip = self.ini_class.get_setting("Kafka", "kafka_ip")
         self.kafka_port = self.ini_class.get_setting(
-            "Kafka", "kafka.port", type_cast=int
+            "Kafka", "kafka_port", type_cast=int
         )
-        self.kafka_group_id = self.ini_class.get_setting("Kafka", "kafka.group-id")
+        self.kafka_group_id = self.ini_class.get_setting("Kafka", "kafka_group-id")
 
         # WebSocket settings
         self.ws_url = self.ini_class.get_setting("WebSocket", "ws_url")

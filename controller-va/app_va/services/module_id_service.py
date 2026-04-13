@@ -16,12 +16,14 @@ class ModuleIdService:
     def get_sender_module_id(self) -> int:
         """Get senderModuleId from external server via ping"""
         current_time = time.time()
-        
+
         # Return cached value if still valid
-        if (self.cached_sender_module_id and 
-            current_time - self.last_ping_time < self.ping_interval):
+        if (
+            self.cached_sender_module_id
+            and current_time - self.last_ping_time < self.ping_interval
+        ):
             return self.cached_sender_module_id
-        
+
         # Fetch new value from server
         try:
             sender_id = self._fetch_sender_module_id()
@@ -42,12 +44,12 @@ class ModuleIdService:
         try:
             # Try to ping external server to get senderModuleId
             ping_url = f"http://{self.server_api_addr}:{self.server_api_port}/ping"
-            
+
             response = requests.get(ping_url, timeout=self.ping_timeout)
-            
+
             if response.status_code == 200:
                 data = response.json()
-                sender_id = data.get('senderModuleId')
+                sender_id = data.get("senderModuleId")
                 if sender_id and isinstance(sender_id, int):
                     return sender_id
                 else:
@@ -56,7 +58,7 @@ class ModuleIdService:
             else:
                 log.warning(f"Ping request failed with status {response.status_code}")
                 return None
-                
+
         except requests.exceptions.RequestException as e:
             log.warning(f"Network error during ping: {e}")
             return None

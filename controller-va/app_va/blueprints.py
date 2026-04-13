@@ -92,7 +92,7 @@ def ping():
         if hasattr(main_process, "module_id_service"):
             sender_id = main_process.module_id_service.get_sender_module_id()
 
-        # Return vendor server connection parameters
+        # Return vendor server connection parameters only
         return jsonify(
             {
                 "status": True,

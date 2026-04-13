@@ -127,13 +127,15 @@ class MainProcess:
     def _init_kafka(self):
         """Initialize Kafka client and message producer"""
         try:
+            # Use Kafka parameters from settings file
             kafka_servers = f"{self.initializer.kafka_ip}:{self.initializer.kafka_port}"
+
             self.kafka_client = KafkaClient(
                 bootstrap_servers=kafka_servers,
                 group_id=self.initializer.kafka_group_id,
             )
             self.message_producer = MessageProducer(self.kafka_client)
-            log.info("Kafka client initialized successfully")
+            log.info(f"Kafka client initialized with servers: {kafka_servers}")
         except Exception as e:
             log.error(f"Failed to initialize Kafka client: {e}")
 
