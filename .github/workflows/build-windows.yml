@@ -1,1 +1,32 @@
+name: Build Windows
 
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller
+          cd controller-va
+          pip install -r requirements.txt
+      
+      - name: Build executable
+        run: |
+          cd controller-va
+          pyinstaller --onefile --name module-va-app run_server.py
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: module-va-windows
+          path: controller-va/dist/*.exe
