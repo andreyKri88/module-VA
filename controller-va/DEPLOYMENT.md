@@ -238,6 +238,91 @@ docker logs controller-va
 docker logs -f controller-va
 ```
 
+## 🖥️ Windows EXE Deployment
+
+### Prerequisites
+- Python 3.8+ installed and in PATH
+- All dependencies installed: `pip install -r requirements.txt`
+- Port 600 available
+
+### Quick Start
+
+#### 1. Check Port Availability
+```bash
+# Check if port 600 is available
+netstat -ano | findstr ":600"
+```
+
+#### 2. Run with Diagnostics (Recommended)
+```bash
+# Run with full system diagnostics
+run_with_debug.bat
+```
+
+#### 3. Normal Run
+```bash
+# Standard launch
+run_controller.bat
+```
+
+#### 4. Direct Python Run
+```bash
+# Run directly with Python
+python run_server.py
+```
+
+### Troubleshooting
+
+#### EXE Closes Immediately
+
+**Problem**: Port 600 already in use
+```bash
+# Find what's using port 600
+netstat -ano | findstr ":600"
+
+# Solution 1: Close the conflicting application
+# Solution 2: Change port in settings.ini
+[ServerAPI]
+port_server=601
+```
+
+**Problem**: Missing dependencies
+```bash
+# Install all required packages
+pip install -r requirements.txt
+```
+
+**Problem**: Import errors
+```bash
+# Run full diagnostics
+run_with_debug.bat
+# This will show exactly which import is failing
+```
+
+### File Structure for EXE
+```
+controller-va/
+├── run_server.py              # Main entry point
+├── run_controller.bat          # Convenient launcher
+├── run_with_debug.bat        # Launch with diagnostics
+├── debug_run.py             # Debug script
+├── diagnose.bat              # System diagnostics
+├── RUN_EXE_INSTRUCTIONS.md   # EXE launch guide
+├── settings.ini               # Configuration
+├── devices.json              # Device configuration
+└── app_va/                  # Main application
+```
+
+### Successful Launch
+
+When the EXE starts successfully, you'll see:
+```
+Starting SentinelVA Controller...
+Starting Flask server on http://0.0.0.0:600
+```
+
+The server will be available at: **http://localhost:600**
+
 ### Health Monitoring
 ```bash
 # Check system status
