@@ -25,8 +25,12 @@ jobs:
         run: |
           cd controller-va
           pyinstaller --onefile --name module-va-app run_server.py
+          # Копируем нужные файлы рядом с exe
+          cp settings.ini dist/
+          cp devices.json dist/
+          cp README.md dist/
       
       - uses: actions/upload-artifact@v4
         with:
           name: module-va-windows
-          path: controller-va/dist/*.exe
+          path: controller-va/dist/*
