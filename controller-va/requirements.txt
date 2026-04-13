@@ -1,0 +1,5 @@
+Flask==2.3.3
+tendo==0.2.12
+kafka-python==2.0.2
+websockets==11.0.3
+requests==2.31.0

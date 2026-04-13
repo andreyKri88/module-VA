@@ -1,0 +1,39 @@
+{
+  "servers": {
+    "1": {
+      "id_serv": "1",
+      "ext_id": "server_001",
+      "name": "VA Server 1",
+      "ip_address": "127.0.0.1",
+      "port": 600,
+      "status": 1,
+      "id_type_unit": "110"
+    }
+  },
+  "cameras": {
+    "1": {
+      "1": {
+        "id_device": "1",
+        "ext_id": "camera_001",
+        "name": "VA Camera 1",
+        "camera_uuid": "675a1fb7-f926-4972-8957-c64f715a4015",
+        "ip_address": "127.0.0.1",
+        "port": 8080,
+        "status": 1,
+        "id_type_unit": "111",
+        "id_serv": "1"
+      },
+      "2": {
+        "id_device": "2",
+        "ext_id": "camera_002",
+        "name": "VA Camera 2",
+        "camera_uuid": "b962eeb9-d9e5-42e9-84ea-2c9773ad29b8",
+        "ip_address": "127.0.0.1",
+        "port": 8081,
+        "status": 1,
+        "id_type_unit": "111",
+        "id_serv": "1"
+      }
+    }
+  }
+}
